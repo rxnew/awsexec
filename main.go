@@ -32,13 +32,14 @@ var opt struct {
 }
 
 var cmd = &cobra.Command{
-	Use:  "awsexec [profile] -- [command]",
-	Args: cobra.MinimumNArgs(1),
-	Run:  run,
+	Use:                   "awsexec [profile] [flags] -- [command]",
+	DisableFlagsInUseLine: true,
+	Args:                  cobra.MinimumNArgs(1),
+	Run:                   run,
 }
 
 func init() {
-	cmd.Flags().BoolVar(&opt.NoCache, "no-cache", false, "Do not use credentials cache")
+	cmd.Flags().BoolVar(&opt.NoCache, "no-cache", false, "disable credentials cache")
 }
 
 func run(cmd *cobra.Command, args []string) {
